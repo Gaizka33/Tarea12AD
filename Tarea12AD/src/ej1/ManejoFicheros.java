@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -73,10 +74,17 @@ public class ManejoFicheros {
 	
 	public void leerFicheroJson(List<Grupo> alumnoscongrupo) {
 		String json = gson.toJson(alumnoscongrupo);
-		List<Grupo> deserializedList = gson.fromJson(json, new TypeToken<List<Grupo>>() {}.getType());
-		for (Grupo g : deserializedList) {
-			System.out.println(g.toString());
+		try {
+			FileReader reader = new FileReader(new File("datos.json"));
+			List<Grupo> deserializedList = gson.fromJson(reader, new TypeToken<List<Grupo>>() {}.getType());
+			for (Grupo g : deserializedList) {
+				System.out.println(g.toString());
+			}
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+		
 	}
 	
 	private static void cerrarLeer() {

@@ -1,4 +1,4 @@
-package ej1;
+ package ej1;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -148,7 +148,7 @@ public class ManejoBaseDeDatos {
 			try (Statement query = Conectar().createStatement()) {
 				ResultSet resultado = query.executeQuery(chupar);
 
-				while (resultado.next()) {
+				while (resultado.next()) { 
 					// Retrieve data for each student
 					int nia = resultado.getInt("NIA");
 					String nombre = resultado.getString("NOMBRE");
